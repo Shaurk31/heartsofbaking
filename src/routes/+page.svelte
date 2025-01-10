@@ -14,7 +14,7 @@
         <!-- Card with Image on the Left -->
         <CookieCard
           title="Hot Cocoa Cookies"
-          description="Rich fudgy treat topped with gooey marshmallow and cocoa powder."
+          description="Rich, fudgy treat topped with gooey marshmallow and cocoa powder."
           image="hotcocoacookies.png"
           position="left"
         />
