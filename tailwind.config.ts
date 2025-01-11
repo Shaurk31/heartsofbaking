@@ -4,8 +4,13 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				jua: ['Jua', 'sans-serif'], // Font for Navbar, Footer, and Buttons
+				lilita: ['Lilita One', 'cursive'], // Font for Cookie Card text
+			},
+		},
 	},
 
-	plugins: []
+	plugins: [],
 } satisfies Config;
