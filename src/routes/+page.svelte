@@ -111,7 +111,7 @@
   <!-- Scroll to Top Button -->
   {#if showBackToTop}
     <button
-      class="fixed bottom-8 right-8 bg-pink-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 transition"
+      class=" font-jua fixed bottom-8 right-8 bg-pink-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 transition"
       on:click={scrollToTop}
     >
       ↑ Back to Top
