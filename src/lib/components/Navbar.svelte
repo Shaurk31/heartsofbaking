@@ -3,6 +3,7 @@
   let isOrderPopupOpen = false;
 
   // Scroll to the specific cookie card
+  // @ts-ignore
   const scrollToSection = (id) => {
     requestAnimationFrame(() => {
       const element = document.getElementById(id);
