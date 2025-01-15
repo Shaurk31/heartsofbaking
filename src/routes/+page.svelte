@@ -1,4 +1,5 @@
 <script>
+  // @ts-ignore
   import Navbar from '../lib/components/Navbar.svelte';
   import Footer from '../lib/components/Footer.svelte';
   import CookieCard from '../lib/components/CookieCard.svelte';
@@ -37,7 +38,7 @@
   };
 </script>
 
-<div class="bg-[#9dc9ce] w-full overflow-x-hidden">
+<div class="bg-[#395192] w-full overflow-x-hidden">
   <!-- Navbar -->
   <Navbar />
 
@@ -50,33 +51,52 @@
       src="banner.png"
       alt="Banner Image"
       class="w-full object-cover h-[500px]"
+      draggable="false"
     />
   </div>
 
   <!-- Main Content -->
-  <main class="space-y-40 py-20 min-h-screen">
+  <main class="space-y-80 py-40 min-h-screen">
     <div class="pt-20">
       <CookieCard
-        id="hot-cocoa-cookies"
-        title="Hot Cocoa Cookies"
-        description="Hot cocoa, but make it a cookie—a rich, fudgy treat topped with a gooey marshmallow center and a dusting of cocoa powder for the ultimate cozy dessert experience."
-        image="hotcocoacookies.png"
-        position="left"
-        hoverColor="#3e2d05"
-        onOrderClick={openOrderPopup}
-      />
-    </div>
-    <div class="pb-20">
+      id="tiramisu-cups"
+      title="$5 | Tiramisu Cups (1)"
+      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      image="tiramisu.png"
+      position="left"
+      hoverColor="#77562c"
+      onOrderClick={openOrderPopup}
+    /> <div/>
+    <div class="pt-20">
+    <CookieCard
+      id="vegan-brownies"
+      title="$4 | Vegan Brownies (2)"
+      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      image="brownie.png"
+      position="right"
+      hoverColor="#3e2d05"
+      onOrderClick={openOrderPopup}
+    /><div/>
+    <div class="pt-20">
       <CookieCard
-        id="peppermint-cupcakes"
-        title="Peppermint Cupcakes"
-        description="Moist chocolate cupcakes with peppermint frosting, topped with a swirl of creamy mint buttercream, sprinkled with crushed candy canes, and finished with a hint of white chocolate drizzle for a festive and refreshing treat perfect for the holiday season."
-        image="peppermintcupcakes.png"
-        position="right"
-        hoverColor="#bc4e3d"
-        onOrderClick={openOrderPopup}
-      />
-    </div>
+      id="cheesecakes"
+      title="$4 | Cheesecakes (2)"
+      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      image="cheesecakes.png"
+      position="left"
+      hoverColor="#cab394"
+      onOrderClick={openOrderPopup}
+    /><div/>
+    <div class="pt-20">
+    <CookieCard
+      id="vegan-cookies"
+      title="$5 | Vegan Chocolate Chip Cookies (3)"
+      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      image="cookie.png"
+      position="right"
+      hoverColor="#946f4d"
+      onOrderClick={openOrderPopup}
+    /><div/>
   </main>
 
   <!-- Footer -->
@@ -87,10 +107,19 @@
     <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
       <div class="bg-[#F3C0C0] p-8 rounded-lg shadow-lg max-w-lg w-full font-jua">
         <h2 class="text-2xl font-bold mb-4">Place Your Order</h2>
-
         <p class="mb-4">
-          To place an order, please contact us using the following payment methods:
+          To place an order, please contact us via 
+          <a 
+            href="https://www.instagram.com/heartsofbaking/" 
+            target="_blank" 
+            class="text-pink-500 underline hover:text-pink-700 transition"
+            aria-label="Instagram"
+          >
+            Instagram
+          </a>
+          and use the following payment methods:
         </p>
+        
         <p class="mb-4">
           <strong>PayPal:</strong> h3artsofbaking@gmail.com
           <br />

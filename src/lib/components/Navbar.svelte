@@ -1,4 +1,6 @@
 <script>
+  import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+  import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
   let isSidebarOpen = false;
   let isOrderPopupOpen = false;
 
@@ -32,17 +34,29 @@
   >
     ≡ menu
   </button>
-  
+
   <!-- Logo / Title -->
   <h1 class="text-xl font-semibold text-center">@heartsofbaking</h1>
-  
-  <!-- Order Now Button -->
-  <button
-    class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition"
-    on:click={openOrderPopup}
-  >
-    Order Now!
-  </button>
+
+  <div class="flex items-center space-x-2">
+    <!-- Instagram Button -->
+    <a
+      href="https://www.instagram.com/heartsofbaking/"
+      target="_blank"
+      class="rounded-md bg-pink-500 p-1 hover:bg-pink-600 transition flex items-center justify-center"
+      aria-label="Instagram"
+    >
+      <FontAwesomeIcon icon={faInstagram} class="text-white w-7 h-7" />
+    </a>
+
+    <!-- Order Now Button -->
+    <button
+      class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition"
+      on:click={openOrderPopup}
+    >
+      Order Now!
+    </button>
+  </div>
 
   <!-- Sidebar -->
   <div
@@ -51,7 +65,7 @@
   >
     <!-- Decoration Image -->
     <img src="menu-decoration.png" alt="Menu Decoration" class="w-3/4 mx-auto mb-4" />
-    
+
     <!-- Close Button -->
     <button
       class="absolute top-4 right-4 text-2xl"
@@ -59,23 +73,39 @@
     >
       ✕
     </button>
-    
+
     <!-- Menu Items -->
     <ul class="space-y-4 text-center">
       <li>
         <button
           class="text-lg font-jua hover:underline"
-          on:click={() => scrollToSection('hot-cocoa-cookies')}
+          on:click={() => scrollToSection('tiramisu-cups')}
         >
-          Hot Cocoa Cookies
+          $5 | Tiramisu Cups
         </button>
       </li>
       <li>
         <button
           class="text-lg font-jua hover:underline"
-          on:click={() => scrollToSection('peppermint-cupcakes')}
+          on:click={() => scrollToSection('vegan-brownies')}
         >
-          Peppermint Cupcakes
+          $4 | Vegan Brownies
+        </button>
+      </li>
+      <li>
+        <button
+          class="text-lg font-jua hover:underline"
+          on:click={() => scrollToSection('cheesecakes')}
+        >
+          $4 | Cheesecakes
+        </button>
+      </li>
+      <li>
+        <button
+          class="text-lg font-jua hover:underline"
+          on:click={() => scrollToSection('vegan-cookies')}
+        >
+          $5 | Vegan Chocolate Chip Cookies
         </button>
       </li>
     </ul>
@@ -86,75 +116,36 @@
     <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
       <div class="bg-[#F3C0C0] p-8 rounded-lg shadow-lg max-w-lg w-full font-jua">
         <h2 class="text-2xl font-bold mb-4">Place Your Order</h2>
+
+        <p class="mb-4">
+          To place an order, please contact us via 
+          <a 
+            href="https://www.instagram.com/heartsofbaking/" 
+            target="_blank" 
+            class="text-pink-500 underline hover:text-pink-700 transition"
+            aria-label="Instagram"
+          >
+            Instagram
+          </a>
+          and use the following payment methods:
+        </p>
         
-        <form on:submit|preventDefault={() => alert('Order Submitted!')}>
-          <!-- Cookie Selection -->
-          <div class="mb-4">
-            <label for="cookie" class="block text-left mb-2">Select a Cookie</label>
-            <select
-              id="cookie"
-              class="w-full px-4 py-2 rounded-lg bg-white shadow-sm"
-              required
-            >
-              <option value="" disabled selected>Select a cookie</option>
-              <option value="Hot Cocoa Cookies">Hot Cocoa Cookies</option>
-              <option value="Peppermint Cupcakes">Peppermint Cupcakes</option>
-            </select>
-          </div>
+        <p class="mb-4">
+          <strong>PayPal:</strong> h3artsofbaking@gmail.com
+          <br />
+          <strong>Venmo:</strong> h3artsofbaking
+        </p>
 
-          <!-- Quantity Selection -->
-          <div class="mb-4">
-            <label for="quantity" class="block text-left mb-2">Select Quantity</label>
-            <select
-              id="quantity"
-              class="w-full px-4 py-2 rounded-lg bg-white shadow-sm"
-              required
-            >
-              <option value="" disabled selected>Select quantity</option>
-              {#each Array.from({ length: 10 }, (_, i) => i) as num}
-                <option value={num}>{num}</option>
-              {/each}
-            </select>
-          </div>
 
-          <!-- Delivery Address -->
-          <div class="mb-4">
-            <label for="address" class="block text-left mb-2">Delivery Address</label>
-            <textarea
-              id="address"
-              rows="3"
-              class="w-full px-4 py-2 rounded-lg bg-white shadow-sm"
-              placeholder="Enter your delivery address"
-              required
-            ></textarea>
-          </div>
-
-          <!-- Payment Information -->
-          <p class="text-left mb-4">
-            Please make your payment via:
-            <br />
-            PayPal: <strong>h3artsofbaking@gmail.com</strong>
-            <br />
-            Venmo: <strong>h3artsofbaking</strong>
-          </p>
-
-          <!-- Submit Button -->
-          <div class="flex justify-between">
-            <button
-              type="button"
-              class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
-              on:click={closeOrderPopup}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="bg-[#573F34] text-white px-4 py-2 rounded-lg hover:bg-[#3E2A26] transition"
-            >
-              Submit Order
-            </button>
-          </div>
-        </form>
+        <div class="flex justify-between">
+          <button
+            type="button"
+            class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
+            on:click={closeOrderPopup}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   {/if}
