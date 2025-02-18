@@ -4,8 +4,11 @@
   import Footer from '../lib/components/Footer.svelte';
   import CookieCard from '../lib/components/CookieCard.svelte';
   import { onMount } from 'svelte';
+  import { colors } from "$lib/color.js";
+  import { menu } from "$lib/menu.js";
 
   let showImage = true;
+  let menuArray = Object.values(menu);
 
   // Handle scroll to collapse the image
   const handleScroll2 = () => {
@@ -38,65 +41,52 @@
   };
 </script>
 
-<div class="bg-[#395192] w-full overflow-x-hidden">
+<div class="w-full overflow-x-hidden" style="background-color: {colors.pageBackground}">
   <!-- Navbar -->
   <Navbar />
 
   <!-- Collapsible Image Section -->
-  <div
-    class="transition-all duration-500 ease-in-out"
-    style="height: {showImage ? '500px' : '0px'}; overflow: hidden;"
-  >
+  <div class="w-full relative">
     <img
       src="banner.png"
       alt="Banner Image"
-      class="w-full object-cover h-[500px]"
+      class="w-full h-[30vh] md:h-[500px] object-cover"
       draggable="false"
     />
   </div>
+  
 
   <!-- Main Content -->
-  <main class="space-y-80 py-40 min-h-screen">
-    <div class="pt-20">
-      <CookieCard
-      id="tiramisu-cups"
-      title="$5 | Tiramisu Cups (1)"
-      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      image="tiramisu.png"
-      position="left"
-      hoverColor="#77562c"
-      onOrderClick={openOrderPopup}
-    /> <div/>
-    <div class="pt-20">
-    <CookieCard
-      id="vegan-brownies"
-      title="$4 | Vegan Brownies (2)"
-      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      image="brownie.png"
-      position="right"
-      hoverColor="#3e2d05"
-      onOrderClick={openOrderPopup}
-    /><div/>
-    <div class="pt-20">
-      <CookieCard
-      id="cheesecakes"
-      title="$4 | Cheesecakes (2)"
-      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      image="cheesecakes.png"
-      position="left"
-      hoverColor="#cab394"
-      onOrderClick={openOrderPopup}
-    /><div/>
-    <div class="pt-20">
-    <CookieCard
-      id="vegan-cookies"
-      title="$5 | Vegan Chocolate Chip Cookies (3)"
-      description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      image="cookie.png"
-      position="right"
-      hoverColor="#946f4d"
-      onOrderClick={openOrderPopup}
-    /><div/>
+  <main class="py-20 min-h-screen">
+    <!-- Manually setting the first item without additional spacing -->
+    {#if menuArray.length > 0}
+      <div class="pt-10">
+        <CookieCard
+          id={menuArray[0].id}
+          title={menuArray[0].title}
+          description={menuArray[0].description}
+          image={menuArray[0].image}
+          position={menuArray[0].position}
+          hoverColor={menuArray[0].hoverColor}
+          onOrderClick={openOrderPopup}
+        />
+      </div>
+    {/if}
+
+    <!-- Dynamically render the rest of the items with the correct spacing -->
+    {#each menuArray.slice(1) as item}
+      <div class="pt-20">
+        <CookieCard
+          id={item.id}
+          title={item.title}
+          description={item.description}
+          image={item.image}
+          position={item.position}
+          hoverColor={item.hoverColor}
+          onOrderClick={openOrderPopup}
+        />
+      </div>
+    {/each}
   </main>
 
   <!-- Footer -->
@@ -104,33 +94,31 @@
 
   <!-- Order Popup -->
   {#if isOrderPopupOpen}
-    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div class="bg-[#F3C0C0] p-8 rounded-lg shadow-lg max-w-lg w-full font-jua">
+    <div class="fixed inset-0 z-50 flex items-center justify-center"
+         style="background-color: {colors.popupOverlay}">
+      <div class="p-8 rounded-lg shadow-lg max-w-lg w-full font-jua"
+           style="background-color: {colors.orderPopupBackground}; color: {colors.orderPopupText}">
         <h2 class="text-2xl font-bold mb-4">Place Your Order</h2>
         <p class="mb-4">
           To place an order, please contact us via 
-          <a 
-            href="https://www.instagram.com/heartsofbaking/" 
-            target="_blank" 
-            class="text-pink-500 underline hover:text-pink-700 transition"
-            aria-label="Instagram"
-          >
+          <a href="https://www.instagram.com/heartsofbaking/" 
+             target="_blank" 
+             class="underline transition"
+             style="color: {colors.navbarHover}">
             Instagram
           </a>
-          and use the following payment methods:
         </p>
-        
+
         <p class="mb-4">
           <strong>PayPal:</strong> h3artsofbaking@gmail.com
           <br />
           <strong>Venmo:</strong> h3artsofbaking
         </p>
 
-        <button
-          type="button"
-          class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition mt-4"
-          on:click={closeOrderPopup}
-        >
+        <button type="button"
+                class="px-4 py-2 rounded-lg transition mt-4"
+                style="background-color: {colors.buttonBackground}; color: {colors.buttonText}"
+                on:click={closeOrderPopup}>
           Close
         </button>
       </div>
@@ -139,10 +127,11 @@
 
   <!-- Scroll to Top Button -->
   {#if showBackToTop}
-    <button
-      class=" font-jua fixed bottom-8 right-8 bg-pink-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 transition"
-      on:click={scrollToTop}
-    >
+    <button class="font-jua fixed bottom-8 right-8 px-6 py-3 rounded-full shadow-lg transition"
+            style="background-color: {colors.backToTopBackground}; color: {colors.backToTopText}"
+            on:mouseenter={(e) => (e.currentTarget.style.backgroundColor = colors.backToTopHover)}
+            on:mouseleave={(e) => (e.currentTarget.style.backgroundColor = colors.backToTopBackground)}
+            on:click={scrollToTop}>
       ↑ Back to Top
     </button>
   {/if}
