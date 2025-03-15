@@ -94,36 +94,50 @@
 
   <!-- Order Popup -->
   {#if isOrderPopupOpen}
-    <div class="fixed inset-0 z-50 flex items-center justify-center"
-         style="background-color: {colors.popupOverlay}">
-      <div class="p-8 rounded-lg shadow-lg max-w-lg w-full font-jua"
-           style="background-color: {colors.orderPopupBackground}; color: {colors.orderPopupText}">
-        <h2 class="text-2xl font-bold mb-4">Place Your Order</h2>
-        <p class="mb-4">
-          To place an order, please contact us via 
-          <a href="https://www.instagram.com/heartsofbaking/" 
-             target="_blank" 
-             class="underline transition"
-             style="color: {colors.navbarHover}">
-            Instagram
-          </a>
-        </p>
+  <div class="fixed inset-0 z-50 flex items-center justify-center"
+       style="background-color: {colors.popupOverlay}">
+    <div class="p-8 rounded-lg shadow-lg max-w-lg w-full font-jua text-center"
+         style="background-color: {colors.orderPopupBackground}; color: {colors.orderPopupText}">
+      <h2 class="text-2xl font-bold mb-4">Place Your Order!</h2>
+      <p class="mb-4">
+        To place an order, please contact us via 
+        <a href="https://www.instagram.com/heartsofbaking/" 
+           target="_blank" 
+           class="underline transition"
+           style="color: {colors.navbarHover}">
+          Instagram
+        </a>
+      </p>
 
-        <p class="mb-4">
-          <strong>PayPal:</strong> h3artsofbaking@gmail.com
-          <br />
-          <strong>Venmo:</strong> h3artsofbaking
-        </p>
+     <!--<p class="mb-4">
+        <strong>PayPal:</strong> h3artsofbaking@gmail.com
+        <br />
+        <strong>Venmo:</strong> h3artsofbaking
+      </p>-->
 
-        <button type="button"
-                class="px-4 py-2 rounded-lg transition mt-4"
-                style="background-color: {colors.buttonBackground}; color: {colors.buttonText}"
-                on:click={closeOrderPopup}>
-          Close
-        </button>
-      </div>
+      <!-- Centered Venmo Logo -->
+      <img src="/venmo.png" 
+           alt="Venmo Logo" 
+           class="w-24 mx-auto mb-2" 
+           draggable="false" />
+           
+
+      <!-- Venmo QR Code Image -->
+      <img src="/qr code.jpg" 
+           alt="Venmo QR Code" 
+           class="w-40 h-40 mx-auto mb-4 rounded-lg shadow-md" 
+           draggable="false" />
+
+      <button type="button"
+              class="px-4 py-2 rounded-lg transition mt-4"
+              style="background-color: {colors.buttonBackground}; color: {colors.buttonText}"
+              on:click={closeOrderPopup}>
+        Close
+      </button>
     </div>
-  {/if}
+  </div>
+{/if}
+
 
   <!-- Scroll to Top Button -->
   {#if showBackToTop}

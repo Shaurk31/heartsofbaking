@@ -37,13 +37,13 @@
 <nav class="p-4 flex items-center justify-between font-jua relative gap-2 flex-nowrap overflow-hidden"
      style="background-color: {colors.navbarBackground}; color: {colors.navbarText}; white-space: nowrap;">
   
-  <!-- Menu Button -->
+  <!-- Menu Button
   <button
     class="text-lg font-bold flex-shrink-0 min-w-[60px]"
     on:click={() => (isSidebarOpen = !isSidebarOpen)}
   >
     ≡ menu
-  </button>
+  </button> -->
 
   <!-- Logo / Title (Hides if it can't fit) -->
   <h1 class="text-xl font-semibold text-center flex-grow text-nowrap overflow-hidden sm:block hidden">@heartsofbaking</h1>
@@ -61,7 +61,7 @@
       <FontAwesomeIcon icon={faInstagram} class="text-white w-7 h-7" />
     </a>
 
-    <!-- Order Now Button -->
+    <!-- Order Now Button 
     <button
       class="px-4 py-2 rounded-lg hover:bg-pink-600 transition flex-shrink-0"
       style="background-color: {colors.buttonBackground}; color: {colors.buttonText}"
@@ -70,7 +70,7 @@
       on:mouseleave={(e) => (e.currentTarget.style.backgroundColor = colors.buttonBackground)}
     >
       Order Now!
-    </button>
+    </button>-->
   </div>
 
   <!-- Sidebar -->
